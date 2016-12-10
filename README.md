@@ -137,14 +137,35 @@ public static String readStream(InputStream is) throws IOException{
 
 如果用户暂不升级，逻辑上应该进入程序的主界面 HomeActivity;
 
+因为欢迎界面只需要进入一次，所以进入主界面后，我们就把 欢迎界面finish（）掉，也就是从任务栈中移除掉.
+
+如果用户选择升级 apk，则使用多线程下载 apk；
+
 ```
 1.使用开源框架xUtils
+1.1 添加 xUtils-xxx.jar 到 libs 目录下
 2.使用HttpUtils的download方法，填入三个参数：服务器下载地址，手机中的存储位置、回调事件
 3.回调事件中有三个常用的方法：onSuccess下载成功、onFailure下载失败、onLoading更新下载进度
 
 xUtils补充
 http://my.oschina.net/u/1171837/blog/147544 作者博客
 ```
+
+假造出一个高版本的 apk： 只需要将
+
+```java
+ android:versionCode="1"
+    android:versionName="1.0" 
+```
+
+改为
+
+```java
+ android:versionCode="2"
+    android:versionName="2.0" 
+```
+
+重新打包即可得到一个高版本的 apk。
 
 ### 12.安装apk
 
