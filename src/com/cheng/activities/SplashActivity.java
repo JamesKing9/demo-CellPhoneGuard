@@ -12,6 +12,9 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.content.res.Resources.NotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,7 +42,7 @@ public class SplashActivity extends Activity {
 			switch (msg.what) {
 			case SHOW_UPDATE_DIALOG: // 如果得到的消息类型是SHOW_UPDATE_DIALOG,则显示应用更新对话框
 				// 将 desc 从消息对象中获取出来
-				String desc=(String) msg.obj;
+				String desc = (String) msg.obj;
 				// 再显示到对话框中
 				showUpdateDialog(desc);
 				break;
@@ -68,23 +71,35 @@ public class SplashActivity extends Activity {
 
 	/**
 	 * 显示应用更新对话框
-	 * @param desc 描述
+	 * 
+	 * @param desc
+	 *            描述
 	 */
 	protected void showUpdateDialog(String desc) {
 		// 弹对话框的套路
 		// 1 获取对话框构造器
 		AlertDialog.Builder builder = new Builder(this);
 		builder.setTitle("升级提醒");
-		
+
 		/*
 		 * 这样设置 Message 比较死板;最好是把更新提醒做成服务器端的配置消息, 以后有新的版本,就可以在服务器端设置一些更新的情景描述
 		 * ,比如圣诞节版本,情人节版本;* 在updateinfo.json中在添加一个“description”属性
 		 */
-//		builder.setMessage("发现新的版本，请升级");
-		
+		// builder.setMessage("发现新的版本，请升级");
+
 		builder.setMessage(desc);
 		builder.setPositiveButton("立刻升级", null);
-		builder.setNegativeButton("暂不升级", null);
+		builder.setNegativeButton("暂不升级", new OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Intent intent = new Intent(SplashActivity.this,
+						HomeActivity.class);
+				startActivity(intent);
+				// 因为欢迎界面只需要进入一次，所以进入主界面后，我们就把 欢迎界面finish（）掉，也就是从任务栈中移除掉
+				finish(); // 表示关闭自己
+			}
+		});
 		builder.show();
 	}
 
@@ -128,7 +143,7 @@ public class SplashActivity extends Activity {
 						Message msg = Message.obtain();
 						msg.what = SHOW_UPDATE_DIALOG; // 定义消息类型
 						// 把获得的描述信息放到 obj中
-						msg.obj=desc;
+						msg.obj = desc;
 						// 发送消息
 						handler.sendMessage(msg);
 					}
