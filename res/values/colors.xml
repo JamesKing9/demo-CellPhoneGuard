@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="sjfd_green">#9CFFCE</color>
+    <color name="textColorPrimaryDark">#ff000000</color>
+    <color name="lock_text_blue">#0079FF</color>
+
+</resources>

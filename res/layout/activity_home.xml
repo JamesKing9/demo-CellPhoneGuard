@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blue_bkg" >
+<!-- 在 java代码中实现 logo 的旋转 -->
+        <ImageView
+            android:id="@+id/iv_home_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/heima" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="33dp"
+            android:layout_toRightOf="@id/iv_home_logo"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_home_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="安全卫士"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+<!--               android:singleLine="true"  使文本单行显示。
+ android:ellipsize  这个属性用来控制 TextView 中文本过多时的显示方式。 -->
+ <!-- 使用自己定义的类，就要引用它的全类名 -->
+
+            <com.cheng.ui.FocusedTextView
+                android:id="@+id/tv_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text="安全卫士,时刻保护您的安全,版权所有，盗版必究！！！"
+                android:textColor="#f00"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/ib_home_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/btn_setting_selector"
+            android:src="@drawable/setting" />
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gv_home_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="3dp"
+        android:numColumns="2"
+        android:verticalSpacing="3dp" />
+
+</LinearLayout>

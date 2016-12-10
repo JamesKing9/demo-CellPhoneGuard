@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 在xml中定义路径的好处就是，以后 路径如果发生变化我们只需要修改资源文件就可以了，不需要修改Java代码 -->
+    <string name="url">http://192.168.0.100:8080/updateinfo.json</string>
+
+</resources>
